@@ -1,0 +1,67 @@
+#!/usr/bin/make -f
+# export DH_VERBOSE = 1
+
+export ROOT = debian/tmp
+export APP_FOLDER = $(ROOT)/usr/local/share/applications/helm
+
+export DEB_VERSION = $(shell dpkg-parsechangelog | egrep '^Version:' | cut -f 2 -d ' ')
+export RELEASE = $(shell echo $(DEB_VERSION) | cut -f 1 -d '-')
+export REVISION = $(shell echo $(DEB_VERSION) | cut -f 4 -d '.')
+
+export APP_NAME = node-feature-discovery
+export APP_VERSION = $(RELEASE)-$(REVISION)
+export APP_TARBALL_FLUXCD = $(APP_NAME)-$(APP_VERSION).tgz
+export HELM_REPO = stx-platform
+export STAGING_FLUXCD = staging-fluxcd
+export FLUXCD_NFD_PKG = helm-charts-node-feature-discovery-0.13.1.tar.gz
+
+%:
+	dh $@
+
+override_dh_auto_build:
+
+	############
+	#  FLUXCD  #
+	############
+	mkdir -p fluxcd
+	cd fluxcd ; \
+	mkdir -p $(APP_NAME); \
+	tar xvfz ../$(FLUXCD_NFD_PKG) ; \
+	mv -f helm-charts/* $(APP_NAME)
+
+	# Create the TGZ file.
+	cp files/Makefile fluxcd
+	cd fluxcd && $(MAKE) $(APP_NAME)
+
+	# Setup the staging directory.
+	mkdir -p $(STAGING_FLUXCD)
+	cp files/metadata.yaml  $(STAGING_FLUXCD)
+	mkdir -p $(STAGING_FLUXCD)/charts
+	cp fluxcd/*.tgz $(STAGING_FLUXCD)/charts
+
+	# Populate metadata.
+	sed -i 's/@APP_NAME@/$(APP_NAME)/g' $(STAGING_FLUXCD)/metadata.yaml
+	sed -i 's/@APP_VERSION@/$(APP_VERSION)/g' $(STAGING_FLUXCD)/metadata.yaml
+	sed -i 's/@HELM_REPO@/$(HELM_REPO)/g' $(STAGING_FLUXCD)/metadata.yaml
+
+	# Copy the plugins: installed in the buildroot
+	mkdir -p $(STAGING_FLUXCD)/plugins
+	cp /plugins/*.whl $(STAGING_FLUXCD)/plugins
+
+	cp -R fluxcd-manifests $(STAGING_FLUXCD)/
+
+	# calculate checksum of all files in app_staging
+	cd $(STAGING_FLUXCD) && find . -type f ! -name '*.md5' -print0 | xargs -0 md5sum > checksum.md5
+	tar cfz $(APP_TARBALL_FLUXCD) -C $(STAGING_FLUXCD)/ .
+
+	# Cleanup staging
+	rm -rf $(STAGING_FLUXCD)
+
+override_dh_auto_install:
+	# Install the app tar file.
+	install -d -m 755 $(APP_FOLDER)
+	install -p -D -m 755 $(APP_TARBALL_FLUXCD) $(APP_FOLDER)
+
+override_dh_auto_test:
+
+override_dh_usrlocal:

@@ -1,0 +1,18 @@
+#
+# Copyright (c) 2023 Wind River Systems, Inc.
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+namespace: node-feature-discovery
+resources:
+  - helmrelease.yaml
+secretGenerator:
+  - name: node-feature-discovery-static-overrides
+    files:
+      - node-feature-discovery-static-overrides.yaml
+  - name: node-feature-discovery-system-overrides
+    files:
+      - node-feature-discovery-system-overrides.yaml
+generatorOptions:
+  disableNameSuffixHash: true

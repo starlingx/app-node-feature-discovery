@@ -1,0 +1,14 @@
+---
+debname: stx-node-feature-discovery-helm
+debver: 1.0-1
+src_path: stx-node-feature-discovery-helm
+dl_files:
+  helm-charts-node-feature-discovery-0.13.1.tar.gz:
+    topdir: helm-charts
+    url: https://github.com/kubernetes-sigs/node-feature-discovery/releases/download/v0.13.1/node-feature-discovery-chart-0.13.1.tgz
+    md5sum: 57d3dc77effc8bc53eb2b1a6bd7d48a1
+revision:
+  dist: $STX_DIST
+  GITREVCOUNT:
+    SRC_DIR: ${MY_REPO}/stx/app-node-feature-discovery
+    BASE_SRCREV: 524479ff99a11c6ab7fab04ba4f672fa5f5f6e61

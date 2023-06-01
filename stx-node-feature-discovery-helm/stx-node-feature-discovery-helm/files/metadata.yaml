@@ -1,0 +1,21 @@
+maintain_user_overrides: true
+
+app_name: @APP_NAME@
+app_version: @APP_VERSION@
+helm_repo: @HELM_REPO@
+
+upgrades:
+  auto_update: true
+
+behavior:
+  platform_managed_app: yes
+  evaluate_reapply:
+    triggers:
+      - type: swact
+      - type: force-swact
+      - type: host-delete
+        filters:
+          - personality: controller
+      - type: kube-upgrade-complete
+        filters:
+          - availability: services-enabled

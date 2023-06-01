@@ -1,0 +1,15 @@
+#
+# Copyright (c) 2023 Wind River Systems, Inc.
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+imagePullSecrets: [{"name": "default-registry-key"}]
+image:
+  # cleans the default digest value since sysinv changes the digest when pushing the image to the local registry
+  digest: ""
+  repository: registry.k8s.io/nfd/node-feature-discovery
+  tag: v0.13.1
+
+namespaceOverride: "node-feature-discovery"
+

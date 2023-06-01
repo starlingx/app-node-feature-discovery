@@ -1,0 +1,5 @@
+python3-k8sapp-node-feature-discovery (1.0-1) unstable; urgency=medium
+
+  * Initial release.
+
+ --  Marcos Paulo Oliveira Silva <mpaulool@windriver.com>  Thu, 1 Jun 2023 12:35:25 +0000
