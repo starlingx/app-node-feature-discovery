@@ -6,7 +6,8 @@ dl_files:
   helm-charts-node-feature-discovery-0.13.1.tar.gz:
     topdir: helm-charts
     url: https://github.com/kubernetes-sigs/node-feature-discovery/releases/download/v0.13.1/node-feature-discovery-chart-0.13.1.tgz
-    md5sum: 57d3dc77effc8bc53eb2b1a6bd7d48a1
+    md5sum: 46abbbce31f45e19d36b576aa824d120
+    sha256sum: cc4f9b2e19e69052d44cd8ef29660b59d0b81fcc78d5703368cc43204f812727
 revision:
   dist: $STX_DIST
   GITREVCOUNT:
