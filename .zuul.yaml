@@ -7,11 +7,15 @@
         - openstack-tox-linters
         - k8sapp-node-feature-discovery-tox-py39
         - k8sapp-node-feature-discovery-tox-pylint
+        - k8sapp-node-feature-discovery-tox-flake8
+        - k8sapp-node-feature-discovery-tox-metadata
     gate:
       jobs:
         - openstack-tox-linters
         - k8sapp-node-feature-discovery-tox-py39
         - k8sapp-node-feature-discovery-tox-pylint
+        - k8sapp-node-feature-discovery-tox-flake8
+        - k8sapp-node-feature-discovery-tox-metadata
     post:
       jobs:
         - stx-app-node-feature-discovery-upload-git-mirror
@@ -27,29 +31,71 @@
       - starlingx/fault
       - starlingx/update
       - starlingx/utilities
+      - starlingx/root
     files:
       - python3-k8sapp-node-feature-discovery/*
     vars:
         tox_envlist: py39
         python_version: 3.9
         tox_extra_args: -c python3-k8sapp-node-feature-discovery/k8sapp_node_feature_discovery/tox.ini
+        tox_constraints_file: '{{ ansible_user_dir }}/src/opendev.org/starlingx/root/build-tools/requirements/debian/upper-constraints.txt'
+
+- job:
+    name: k8sapp-node-feature-discovery-tox-metadata
+    parent: tox
+    description: |
+        Run metadata test for node-feature-discovery app
+    nodeset: debian-bullseye
+    required-projects:
+      - starlingx/config
+      - starlingx/fault
+      - starlingx/update
+      - starlingx/utilities
+      - starlingx/root
+    files:
+      - python3-k8sapp-node-feature-discovery/*
+    vars:
+        tox_envlist: metadata
+        tox_extra_args: -c python3-k8sapp-node-feature-discovery/k8sapp_node_feature_discovery/tox.ini
+        tox_constraints_file: '{{ ansible_user_dir }}/src/opendev.org/starlingx/root/build-tools/requirements/debian/upper-constraints.txt'
 
 - job:
     name: k8sapp-node-feature-discovery-tox-pylint
     parent: tox
     description: |
         Run pylint test for node-feature-discovery app
-    nodeset: ubuntu-bionic
+    nodeset: debian-bullseye
     required-projects:
       - starlingx/config
       - starlingx/fault
       - starlingx/update
       - starlingx/utilities
+      - starlingx/root
     files:
       - python3-k8sapp-node-feature-discovery/*
     vars:
         tox_envlist: pylint
         tox_extra_args: -c python3-k8sapp-node-feature-discovery/k8sapp_node_feature_discovery/tox.ini
+        tox_constraints_file: '{{ ansible_user_dir }}/src/opendev.org/starlingx/root/build-tools/requirements/debian/upper-constraints.txt'
+
+- job:
+    name: k8sapp-node-feature-discovery-tox-flake8
+    parent: tox
+    description: |
+        Run flake8 test for node-feature-discovery app
+    nodeset: debian-bullseye
+    required-projects:
+      - starlingx/config
+      - starlingx/fault
+      - starlingx/update
+      - starlingx/utilities
+      - starlingx/root
+    files:
+      - python3-k8sapp-node-feature-discovery/*
+    vars:
+        tox_envlist: flake8
+        tox_extra_args: -c python3-k8sapp-node-feature-discovery/k8sapp_node_feature_discovery/tox.ini
+        tox_constraints_file: '{{ ansible_user_dir }}/src/opendev.org/starlingx/root/build-tools/requirements/debian/upper-constraints.txt'
 
 - job:
     name: stx-app-node-feature-discovery-upload-git-mirror

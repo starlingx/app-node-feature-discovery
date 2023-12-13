@@ -76,11 +76,16 @@ class NodeFeatureDiscoveryAppLifecycleOperator(base.AppLifecycleOperator):
         if custom_resources_list:
             for custom_resource in custom_resources_list:
 
-                cmd = ['kubectl', '--kubeconfig',
-                       kubernetes.KUBERNETES_ADMIN_CONF, 'delete',
-                       "{}/{}".format(app_constants.HELM_CRD_SHORT_NFR_NFD,
-                                      custom_resource["metadata"]["name"])
-                      ]
+                cmd = [
+                    'kubectl',
+                    '--kubeconfig',
+                    kubernetes.KUBERNETES_ADMIN_CONF,
+                    'delete',
+                    "{}/{}".format(
+                        app_constants.HELM_CRD_SHORT_NFR_NFD,
+                        custom_resource["metadata"]["name"]
+                    )
+                ]
 
                 stdout, stderr = cutils.trycmd(*cmd)
 
@@ -102,7 +107,7 @@ class NodeFeatureDiscoveryAppLifecycleOperator(base.AppLifecycleOperator):
         # Helm doesn't delete CRDs and the namespace. To clean up after
         # application-remove, we need to explicitly delete them.
         cmd = ['kubectl', '--kubeconfig', kubernetes.KUBERNETES_ADMIN_CONF,
-               'delete','crd',  app_constants.HELM_CRD_NAME_NF_NFD]
+               'delete', 'crd', app_constants.HELM_CRD_NAME_NF_NFD]
         stdout, stderr = cutils.trycmd(*cmd)
 
         if stderr:
@@ -114,7 +119,7 @@ class NodeFeatureDiscoveryAppLifecycleOperator(base.AppLifecycleOperator):
             LOG.debug("{} app: cmd={} stdout={}".format(app.name, cmd, stdout))
 
         cmd = ['kubectl', '--kubeconfig', kubernetes.KUBERNETES_ADMIN_CONF,
-               'delete','crd',  app_constants.HELM_CRD_NAME_NFR_NFD]
+               'delete', 'crd', app_constants.HELM_CRD_NAME_NFR_NFD]
         stdout, stderr = cutils.trycmd(*cmd)
 
         if stderr:

@@ -19,6 +19,7 @@ class NodeFeatureDiscoveryTestCase(test_plugins.K8SAppNodeFeatureDiscoveryAppMix
         self.app = dbutils.create_test_app(name='node-feature-discovery')
         self.dbapi = dbapi.get_instance()
 
+
 class NodeFeatureDiscoveryTestCaseDummy(NodeFeatureDiscoveryTestCase, dbbase.ProvisionedControllerHostTestCase):
     # without a test zuul will fail
     def test_dummy(self):
