@@ -3,7 +3,7 @@ Upstream-Name: python3-k8sapp-node-feature-discovery
 Source: https://opendev.org/starlingx/app-node-feature-discovery/
 
 Files: *
-Copyright: (c) 2013-2023 Wind River Systems, Inc
+Copyright: (c) 2013-2024 Wind River Systems, Inc
 License: Apache-2
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.

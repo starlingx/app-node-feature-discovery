@@ -1,3 +1,9 @@
+stx-node-feature-discovery-helm (1.1-0) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Thiago Antonio Miranda <tmarques@windriver.com> Wed, 3 Jan 2024 12:00:00 +0000
+
 stx-node-feature-discovery-helm (1.0-1) unstable; urgency=medium
 
   * Initial release.

@@ -1,6 +1,6 @@
 ---
 debname: python3-k8sapp-node-feature-discovery
-debver: 1.0-1
+debver: 1.1-0
 src_path: k8sapp_node_feature_discovery
 revision:
   dist: $STX_DIST
