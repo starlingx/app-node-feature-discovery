@@ -1,0 +1,30 @@
+#!/usr/bin/make -f
+# export DH_VERBOSE = 1
+
+export DEB_VERSION = $(shell dpkg-parsechangelog | egrep '^Version:' | cut -f 2 -d ' ')
+export PATCH_VERSION = $(shell echo $(DEB_VERSION) | cut -f 4 -d '.')
+export CHART_BASE_VERSION = "0.15.0"
+export CHART_VERSION = $(CHART_BASE_VERSION)+STX.$(PATCH_VERSION)
+
+export ROOT = debian/tmp
+export APP_FOLDER = $(ROOT)/usr/lib/helm
+
+%:
+	dh $@
+
+override_dh_auto_build:
+	mkdir -p node-feature-discovery/node-feature-discovery
+	mv Makefile node-feature-discovery
+
+	for i in crds templates values.yaml README.md Chart.yaml; do \
+	    mv $$i node-feature-discovery/node-feature-discovery;    \
+	done
+
+	cd node-feature-discovery && make CHART_VERSION=$(CHART_VERSION) node-feature-discovery
+
+override_dh_auto_install:
+	# Install the app tar file.
+	install -d -m 755 $(APP_FOLDER)
+	install -p -D -m 755 node-feature-discovery/node-feature-discovery*.tgz $(APP_FOLDER)
+
+override_dh_auto_test:

@@ -1,0 +1,5 @@
+node-feature-discovery-helm (0.15-0) unstable; urgency=medium
+
+  * Initial release.
+
+ -- David Bastos <david.barbosabastos@windriver.com>  Fri, 29 Dec 2023 20:07:42 +0000

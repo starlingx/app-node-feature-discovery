@@ -1,2 +1,3 @@
+helm-charts/upstream/node-feature-discovery-helm
 python3-k8sapp-node-feature-discovery
 stx-node-feature-discovery-helm
