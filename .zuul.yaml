@@ -52,8 +52,6 @@
       - starlingx/update
       - starlingx/utilities
       - starlingx/root
-    files:
-      - python3-k8sapp-node-feature-discovery/*
     vars:
         tox_envlist: metadata
         tox_extra_args: -c python3-k8sapp-node-feature-discovery/k8sapp_node_feature_discovery/tox.ini
