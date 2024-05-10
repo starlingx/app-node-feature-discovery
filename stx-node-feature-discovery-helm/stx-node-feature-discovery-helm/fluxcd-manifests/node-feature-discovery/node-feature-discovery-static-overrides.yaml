@@ -9,7 +9,7 @@ image:
   # cleans the default digest value since sysinv changes the digest when pushing the image to the local registry
   digest: ""
   repository: registry.k8s.io/nfd/node-feature-discovery
-  tag: v0.15.0
+  tag: v0.15.4
 
 namespaceOverride: "node-feature-discovery"
 

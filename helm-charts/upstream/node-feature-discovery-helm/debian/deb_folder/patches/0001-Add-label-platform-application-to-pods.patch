@@ -1,6 +1,6 @@
-From 32840e40963db71394cd19782188fd8b5fd51624 Mon Sep 17 00:00:00 2001
-From: David Bastos <david.barbosabastos@windriver.com>
-Date: Wed, 24 Jan 2024 16:18:20 -0300
+From 61c2d96f7346ea914ce550f73be5a67766a1ae61 Mon Sep 17 00:00:00 2001
+From: Guilherme Santos <guilherme.santos@windriver.com>
+Date: Fri, 10 May 2024 17:11:10 -0300
 Subject: [PATCH] Add label platform/application to pods
 
 Add support to 'app.starlingx.io/component' to be overwritten
@@ -9,7 +9,7 @@ by user override, with possible values being 'platform' and
 change will also restart the pods if the label in namespace
 change.
 
-Signed-off-by: David Bastos <david.barbosabastos@windriver.com>
+Signed-off-by: Guilherme Santos <guilherme.santos@windriver.com>
 ---
  templates/master.yaml          | 2 ++
  templates/nfd-gc.yaml          | 2 ++
@@ -19,7 +19,7 @@ Signed-off-by: David Bastos <david.barbosabastos@windriver.com>
  5 files changed, 10 insertions(+)
 
 diff --git a/templates/master.yaml b/templates/master.yaml
-index 53a291e..5de9904 100644
+index 53a291e0..5de99049 100644
 --- a/templates/master.yaml
 +++ b/templates/master.yaml
 @@ -21,10 +21,12 @@ spec:
@@ -36,7 +36,7 @@ index 53a291e..5de9904 100644
      spec:
      {{- with .Values.imagePullSecrets }}
 diff --git a/templates/nfd-gc.yaml b/templates/nfd-gc.yaml
-index 1e0e123..ccdfa7d 100644
+index 1e0e1232..ccdfa7d3 100644
 --- a/templates/nfd-gc.yaml
 +++ b/templates/nfd-gc.yaml
 @@ -21,10 +21,12 @@ spec:
@@ -53,7 +53,7 @@ index 1e0e123..ccdfa7d 100644
      spec:
        serviceAccountName: {{ include "node-feature-discovery.gc.serviceAccountName" . }}
 diff --git a/templates/topologyupdater.yaml b/templates/topologyupdater.yaml
-index f51c10e..26f9986 100644
+index f51c10e6..26f99866 100644
 --- a/templates/topologyupdater.yaml
 +++ b/templates/topologyupdater.yaml
 @@ -20,10 +20,12 @@ spec:
@@ -70,7 +70,7 @@ index f51c10e..26f9986 100644
      spec:
        serviceAccountName: {{ include "node-feature-discovery.topologyUpdater.serviceAccountName" . }}
 diff --git a/templates/worker.yaml b/templates/worker.yaml
-index f49f9bd..b827e0a 100644
+index f49f9bd6..b827e0a3 100644
 --- a/templates/worker.yaml
 +++ b/templates/worker.yaml
 @@ -20,10 +20,12 @@ spec:
@@ -87,7 +87,7 @@ index f49f9bd..b827e0a 100644
      spec:
        dnsPolicy: ClusterFirstWithHostNet
 diff --git a/values.yaml b/values.yaml
-index d4919bc..942f641 100644
+index d4919bca..942f6410 100644
 --- a/values.yaml
 +++ b/values.yaml
 @@ -6,6 +6,8 @@ image:
