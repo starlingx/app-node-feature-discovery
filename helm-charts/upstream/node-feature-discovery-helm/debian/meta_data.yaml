@@ -11,5 +11,5 @@ revision:
   dist: $STX_DIST
   stx_patch: 1
   GITREVCOUNT:
-    BASE_SRCREV: 469d0fbd9e862dc2cb4fb3f4476d3cd1531b6bec
+    BASE_SRCREV: 524479ff99a11c6ab7fab04ba4f672fa5f5f6e61
     SRC_DIR: ${MY_REPO}/stx/app-node-feature-discovery/helm-charts/upstream/node-feature-discovery-helm

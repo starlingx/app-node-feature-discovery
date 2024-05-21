@@ -1,6 +1,6 @@
 ---
 debname: stx-node-feature-discovery-helm
-debver: 1.1-0
+debver: 1.1-1
 src_path: stx-node-feature-discovery-helm
 revision:
   dist: $STX_DIST
