@@ -1,3 +1,9 @@
+stx-node-feature-discovery (1.2-0) unstable; urgency=medium
+
+  * Rename package.
+
+ -- Guilherme Santos <guilherme.santos@windriver.com> Tue, 22 May 2024 11:48:32 +0000
+
 stx-node-feature-discovery-helm (1.1-1) unstable; urgency=medium
 
   * Update image tag.

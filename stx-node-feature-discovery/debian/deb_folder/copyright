@@ -1,5 +1,5 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: stx-node-feature-discovery-helm
+Upstream-Name: stx-node-feature-discovery
 Source: https://opendev.org/starlingx/app-node-feature-discovery/
 
 Files: *

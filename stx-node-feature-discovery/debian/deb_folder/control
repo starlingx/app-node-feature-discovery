@@ -1,4 +1,4 @@
-Source: stx-node-feature-discovery-helm
+Source: stx-node-feature-discovery
 Section: libs
 Priority: optional
 Maintainer: StarlingX Developers <starlingx-discuss@lists.starlingx.io>
@@ -11,9 +11,11 @@ Build-Depends: debhelper-compat (= 13),
 Standards-Version: 4.5.1
 Homepage: https://www.starlingx.io
 
-Package: stx-node-feature-discovery-helm
+Package: stx-node-feature-discovery
+Replaces: stx-node-feature-discovery-helm
+Conflicts: stx-node-feature-discovery-helm
 Section: libs
 Architecture: any
 Depends: ${misc:Depends}
-Description: StarlingX Node Feature Discovery Application FluxCD Helm Charts
+Description: StarlingX Node Feature Discovery FluxCD Application
  This package contains FluxCD manifests for the node feature discovery application.
