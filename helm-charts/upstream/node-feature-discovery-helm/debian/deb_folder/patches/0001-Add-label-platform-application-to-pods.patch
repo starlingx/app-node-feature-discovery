@@ -1,15 +1,14 @@
-From 61c2d96f7346ea914ce550f73be5a67766a1ae61 Mon Sep 17 00:00:00 2001
-From: Guilherme Santos <guilherme.santos@windriver.com>
-Date: Fri, 10 May 2024 17:11:10 -0300
+From cca96235b5b37380f3b91b87b899b6ada999d800 Mon Sep 17 00:00:00 2001
+From: Reynaldo P Gomes <reynaldo.patronegomes@windriver.com>
+Date: Thu, 10 Oct 2024 11:46:19 -0300
 Subject: [PATCH] Add label platform/application to pods
 
-Add support to 'app.starlingx.io/component' to be overwritten
-by user override, with possible values being 'platform' and
-'application'. With 'platform' being the default value. This
-change will also restart the pods if the label in namespace
-change.
+Add support to 'app.starlingx.io/component' to be overwritten by user
+override, with possible values being 'platform' and 'application'. With
+'platform' being the default value. This change will also restart the
+pods if the label in namespace change.
 
-Signed-off-by: Guilherme Santos <guilherme.santos@windriver.com>
+Signed-off-by: Reynaldo P Gomes <reynaldo.patronegomes@windriver.com>
 ---
  templates/master.yaml          | 2 ++
  templates/nfd-gc.yaml          | 2 ++
@@ -19,10 +18,10 @@ Signed-off-by: Guilherme Santos <guilherme.santos@windriver.com>
  5 files changed, 10 insertions(+)
 
 diff --git a/templates/master.yaml b/templates/master.yaml
-index 53a291e0..5de99049 100644
+index 162f64f4..a5eb87ad 100644
 --- a/templates/master.yaml
 +++ b/templates/master.yaml
-@@ -21,10 +21,12 @@ spec:
+@@ -22,10 +22,12 @@ spec:
      metadata:
        labels:
          {{- include "node-feature-discovery.selectorLabels" . | nindent 8 }}
@@ -34,12 +33,12 @@ index 53a291e0..5de99049 100644
 +        configchecksum: {{ toYaml .Values.isApplicationLabel | sha256sum | trunc 63 }}
        {{- end }}
      spec:
-     {{- with .Values.imagePullSecrets }}
+     {{- with .Values.priorityClassName }}
 diff --git a/templates/nfd-gc.yaml b/templates/nfd-gc.yaml
-index 1e0e1232..ccdfa7d3 100644
+index 220015a3..44be2436 100644
 --- a/templates/nfd-gc.yaml
 +++ b/templates/nfd-gc.yaml
-@@ -21,10 +21,12 @@ spec:
+@@ -22,10 +22,12 @@ spec:
      metadata:
        labels:
          {{- include "node-feature-discovery.selectorLabels" . | nindent 8 }}
@@ -53,10 +52,10 @@ index 1e0e1232..ccdfa7d3 100644
      spec:
        serviceAccountName: {{ include "node-feature-discovery.gc.serviceAccountName" . }}
 diff --git a/templates/topologyupdater.yaml b/templates/topologyupdater.yaml
-index f51c10e6..26f99866 100644
+index b0b36265..0af2d165 100644
 --- a/templates/topologyupdater.yaml
 +++ b/templates/topologyupdater.yaml
-@@ -20,10 +20,12 @@ spec:
+@@ -21,10 +21,12 @@ spec:
      metadata:
        labels:
          {{- include "node-feature-discovery.selectorLabels" . | nindent 8 }}
@@ -70,10 +69,10 @@ index f51c10e6..26f99866 100644
      spec:
        serviceAccountName: {{ include "node-feature-discovery.topologyUpdater.serviceAccountName" . }}
 diff --git a/templates/worker.yaml b/templates/worker.yaml
-index f49f9bd6..b827e0a3 100644
+index fb19270d..b40ddb23 100644
 --- a/templates/worker.yaml
 +++ b/templates/worker.yaml
-@@ -20,10 +20,12 @@ spec:
+@@ -21,10 +21,12 @@ spec:
      metadata:
        labels:
          {{- include "node-feature-discovery.selectorLabels" . | nindent 8 }}
@@ -87,7 +86,7 @@ index f49f9bd6..b827e0a3 100644
      spec:
        dnsPolicy: ClusterFirstWithHostNet
 diff --git a/values.yaml b/values.yaml
-index d4919bca..942f6410 100644
+index 2a4106c8..bab8e008 100644
 --- a/values.yaml
 +++ b/values.yaml
 @@ -6,6 +6,8 @@ image:
@@ -100,5 +99,5 @@ index d4919bca..942f6410 100644
  fullnameOverride: ""
  namespaceOverride: ""
 -- 
-2.34.1
+2.43.0
 

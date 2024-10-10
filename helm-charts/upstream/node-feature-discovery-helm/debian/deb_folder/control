@@ -11,5 +11,5 @@ Package: node-feature-discovery-helm
 Section: libs
 Architecture: any
 Depends: ${misc:Depends}
-Description: StarlingX Ceph CSI Helm Charts
- This package contains helm charts for the Ceph CSI application.
+Description: StarlingX Node Feature Discovery Helm Charts
+ This package contains helm charts for the Node Feature Discovery application.

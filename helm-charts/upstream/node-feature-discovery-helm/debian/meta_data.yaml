@@ -1,10 +1,10 @@
 ---
 debname: node-feature-discovery-helm
-debver: 0.15-4
+debver: 0.16-4
 dl_path:
-  name: node-feature-discovery-0.15.4.tgz
-  url: https://github.com/kubernetes-sigs/node-feature-discovery/releases/download/v0.15.4/node-feature-discovery-chart-0.15.4.tgz
-  sha256sum: 8ea3f4745e5ff0271746d4468c79d3d7ce72a1c5577225d536a1cf033b2c6398
+  name: node-feature-discovery-0.16.4.tgz
+  url: https://github.com/kubernetes-sigs/node-feature-discovery/releases/download/v0.16.4/node-feature-discovery-chart-0.16.4.tgz
+  sha256sum: e15d6557372f977c8decdd694b82d41542ffca34af93b6ba790a17a8766b5c69
 src_files:
   - node-feature-discovery-helm/files/Makefile
 revision:
