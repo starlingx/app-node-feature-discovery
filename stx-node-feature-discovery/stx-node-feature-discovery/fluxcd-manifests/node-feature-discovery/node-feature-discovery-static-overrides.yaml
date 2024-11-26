@@ -13,6 +13,11 @@ image:
 
 namespaceOverride: "node-feature-discovery"
 
+master:
+  resources:
+    requests:
+      cpu: 0
+
 worker:
   tolerations:
   - key: "node-role.kubernetes.io/master"
@@ -21,3 +26,17 @@ worker:
   - key: "node-role.kubernetes.io/control-plane"
     operator: Exists
     effect: NoSchedule
+  sleepInterval: 3600s
+  resources:
+    requests:
+      cpu: 0
+
+topologyUpdater:
+  resources:
+    requests:
+      cpu: 0
+
+gc:
+  resources:
+    requests:
+      cpu: 0
