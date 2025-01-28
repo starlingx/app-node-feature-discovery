@@ -13,6 +13,7 @@ from sysinv.common import constants
 from sysinv.common import kubernetes
 from sysinv.common import utils as cutils
 from sysinv.helm import lifecycle_base as base
+from sysinv.helm.lifecycle_constants import LifecycleConstants
 
 from k8sapp_node_feature_discovery.common import constants as app_constants
 
@@ -31,11 +32,11 @@ class NodeFeatureDiscoveryAppLifecycleOperator(base.AppLifecycleOperator):
         :param hook_info: LifecycleHookInfo object
 
         """
-        if hook_info.lifecycle_type == constants.APP_LIFECYCLE_TYPE_OPERATION:
+        if hook_info.lifecycle_type == LifecycleConstants.APP_LIFECYCLE_TYPE_OPERATION:
             if hook_info.operation == constants.APP_REMOVE_OP:
-                if hook_info.relative_timing == constants.APP_LIFECYCLE_TIMING_PRE:
+                if hook_info.relative_timing == LifecycleConstants.APP_LIFECYCLE_TIMING_PRE:
                     return self.pre_remove(app, app_op)
-                if hook_info.relative_timing == constants.APP_LIFECYCLE_TIMING_POST:
+                if hook_info.relative_timing == LifecycleConstants.APP_LIFECYCLE_TIMING_POST:
                     return self.post_remove(app, app_op)
 
         super(NodeFeatureDiscoveryAppLifecycleOperator, self).app_lifecycle_actions(
