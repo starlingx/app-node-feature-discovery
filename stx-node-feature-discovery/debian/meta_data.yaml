@@ -1,6 +1,6 @@
 ---
 debname: stx-node-feature-discovery
-debver: 1.2-1
+debver: 1.3-0
 src_path: stx-node-feature-discovery
 revision:
   dist: $STX_DIST

@@ -1,3 +1,9 @@
+node-feature-discovery-helm (0.17-2) unstable; urgency=medium
+
+  * Update to upstream release version 0.17-2.
+
+ -- Reynaldo P Gomes <reynaldo.patronegomes@windriver.com>  Tue, 10 Apr 2025 11:00:00 +0000
+
 node-feature-discovery-helm (0.16-4) unstable; urgency=medium
 
   * Update to upstream release version 0.16-4.

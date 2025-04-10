@@ -1,0 +1,30 @@
+From 0c603615243c4bb5ad6b6213e5c2fd4c8cfb7ca1 Mon Sep 17 00:00:00 2001
+From: Reynaldo P Gomes <reynaldo.patronegomes@windriver.com>
+Date: Wed, 30 Apr 2025 09:34:47 -0300
+Subject: [PATCH 2/5] Add label platform/application to gc pod
+
+Add support to 'app.starlingx.io/component' to be overwritten by user
+override, with possible values being 'platform' and 'application'. With
+'platform' being the default value. This change will also restart the
+pods if the label in namespace change.
+
+Signed-off-by: Reynaldo P Gomes <reynaldo.patronegomes@windriver.com>
+---
+ templates/nfd-gc.yaml | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/templates/nfd-gc.yaml b/templates/nfd-gc.yaml
+index 3642aa642..ee16ff7b6 100644
+--- a/templates/nfd-gc.yaml
++++ b/templates/nfd-gc.yaml
+@@ -22,6 +22,7 @@ spec:
+     metadata:
+       labels:
+         {{- include "node-feature-discovery.selectorLabels" . | nindent 8 }}
++        app.starlingx.io/component: {{ ternary "application" "platform" (eq .Values.component "application") }}
+         role: gc
+       {{- with .Values.gc.annotations }}
+       annotations:
+-- 
+2.43.0
+

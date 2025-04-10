@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2023-2024 Wind River Systems, Inc.
+# Copyright (c) 2023-2025 Wind River Systems, Inc.
 #
 # SPDX-License-Identifier: Apache-2.0
 #
@@ -9,7 +9,7 @@ image:
   # cleans the default digest value since sysinv changes the digest when pushing the image to the local registry
   digest: ""
   repository: registry.k8s.io/nfd/node-feature-discovery
-  tag: v0.16.4
+  tag: v0.17.2
 
 namespaceOverride: "node-feature-discovery"
 
@@ -30,7 +30,9 @@ worker:
   - key: "node-role.kubernetes.io/control-plane"
     operator: Exists
     effect: NoSchedule
-  sleepInterval: 3600s
+  config:
+    core:
+      sleepInterval: 3600s
   resources:
     requests:
       cpu: 0
