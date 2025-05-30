@@ -1,14 +1,14 @@
 ---
 debname: node-feature-discovery-helm
-debver: 0.17-2
+debver: 0.17-3
 dl_path:
-  name: node-feature-discovery-0.17.2.tgz
-  url: https://github.com/kubernetes-sigs/node-feature-discovery/releases/download/v0.17.2/node-feature-discovery-chart-0.17.2.tgz
-  sha256sum: b2385488233c73c06eab3fa984b8512b52af9859888dc649a2c292f1e0864423
+  name: node-feature-discovery-0.17.3.tgz
+  url: https://github.com/kubernetes-sigs/node-feature-discovery/releases/download/v0.17.3/node-feature-discovery-chart-0.17.3.tgz
+  sha256sum: d6cfe79cc625bfb1601f28b142c3ba901e6be04724618e86acb20a166135a932
 src_files:
   - node-feature-discovery-helm/files/Makefile
 revision:
   dist: $STX_DIST
   GITREVCOUNT:
-    BASE_SRCREV: ff58020035a66520dd44bd51fae475807a2c81a7
+    BASE_SRCREV: 8fda7a8e3d8fec0b3702140f959c047fe31d2483
     SRC_DIR: ${MY_REPO}/stx/app-node-feature-discovery/helm-charts/upstream/node-feature-discovery-helm
