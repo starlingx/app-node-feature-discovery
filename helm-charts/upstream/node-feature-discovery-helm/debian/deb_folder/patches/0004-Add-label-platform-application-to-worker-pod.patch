@@ -1,0 +1,30 @@
+From b92279b7542b465b9dfeec4d6ba88a1588caaab5 Mon Sep 17 00:00:00 2001
+From: Reynaldo P Gomes <reynaldo.patronegomes@windriver.com>
+Date: Wed, 30 Apr 2025 09:36:35 -0300
+Subject: [PATCH 4/5] Add label platform/application to worker pod
+
+Add support to 'app.starlingx.io/component' to be overwritten by user
+override, with possible values being 'platform' and 'application'. With
+'platform' being the default value. This change will also restart the
+pods if the label in namespace change.
+
+Signed-off-by: Reynaldo P Gomes <reynaldo.patronegomes@windriver.com>
+---
+ templates/worker.yaml | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/templates/worker.yaml b/templates/worker.yaml
+index 4aadd800b..43514ff25 100644
+--- a/templates/worker.yaml
++++ b/templates/worker.yaml
+@@ -21,6 +21,7 @@ spec:
+     metadata:
+       labels:
+         {{- include "node-feature-discovery.selectorLabels" . | nindent 8 }}
++        app.starlingx.io/component: {{ ternary "application" "platform" (eq .Values.component "application") }}
+         role: worker
+       annotations:
+         checksum/config: {{ include (print $.Template.BasePath "/nfd-worker-conf.yaml") . | sha256sum }}
+-- 
+2.43.0
+

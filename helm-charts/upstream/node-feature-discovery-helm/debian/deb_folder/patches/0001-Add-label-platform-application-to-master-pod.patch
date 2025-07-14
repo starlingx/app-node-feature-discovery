@@ -1,0 +1,30 @@
+From 8b33d0b50d1306772d3110e6711f2cd7e4affe24 Mon Sep 17 00:00:00 2001
+From: Reynaldo P Gomes <reynaldo.patronegomes@windriver.com>
+Date: Wed, 30 Apr 2025 09:33:49 -0300
+Subject: [PATCH 1/5] Add label platform/application to master pod
+
+Add support to 'app.starlingx.io/component' to be overwritten by user
+override, with possible values being 'platform' and 'application'. With
+'platform' being the default value. This change will also restart the
+pods if the label in namespace change.
+
+Signed-off-by: Reynaldo P Gomes <reynaldo.patronegomes@windriver.com>
+---
+ templates/master.yaml | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/templates/master.yaml b/templates/master.yaml
+index da3ca2408..9879a450b 100644
+--- a/templates/master.yaml
++++ b/templates/master.yaml
+@@ -22,6 +22,7 @@ spec:
+     metadata:
+       labels:
+         {{- include "node-feature-discovery.selectorLabels" . | nindent 8 }}
++        app.starlingx.io/component: {{ ternary "application" "platform" (eq .Values.component "application") }}
+         role: master
+       annotations:
+         checksum/config: {{ include (print $.Template.BasePath "/nfd-master-conf.yaml") . | sha256sum }}
+-- 
+2.43.0
+

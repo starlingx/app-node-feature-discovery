@@ -1,1 +1,5 @@
-0001-Add-label-platform-application-to-pods.patch
+0001-Add-label-platform-application-to-master-pod.patch
+0002-Add-label-platform-application-to-gc-pod.patch
+0003-Add-label-platform-application-to-topology-pod.patch
+0004-Add-label-platform-application-to-worker-pod.patch
+0005-Add-label-platform-application-to-pods.patch
