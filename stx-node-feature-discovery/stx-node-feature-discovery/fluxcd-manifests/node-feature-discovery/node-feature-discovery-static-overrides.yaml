@@ -17,6 +17,7 @@ master:
   resources:
     requests:
       cpu: 0
+      memory: 0
   livenessProbe:
     timeoutSeconds: 5
   readinessProbe:
@@ -36,6 +37,7 @@ worker:
   resources:
     requests:
       cpu: 0
+      memory: 0
   livenessProbe:
     timeoutSeconds: 5
   readinessProbe:
@@ -45,8 +47,10 @@ topologyUpdater:
   resources:
     requests:
       cpu: 0
+      memory: 0
 
 gc:
   resources:
     requests:
       cpu: 0
+      memory: 0
