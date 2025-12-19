@@ -4,12 +4,12 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-imagePullSecrets: [{"name": "default-registry-key"}]
+imagePullSecrets: ["name": "default-registry-key"]
 image:
   # cleans the default digest value since sysinv changes the digest when pushing the image to the local registry
   digest: ""
   repository: registry.k8s.io/nfd/node-feature-discovery
-  tag: v0.17.3
+  tag: v0.18.3
 
 namespaceOverride: "node-feature-discovery"
 
@@ -25,12 +25,12 @@ master:
 
 worker:
   tolerations:
-  - key: "node-role.kubernetes.io/master"
-    operator: Exists
-    effect: NoSchedule
-  - key: "node-role.kubernetes.io/control-plane"
-    operator: Exists
-    effect: NoSchedule
+    - key: "node-role.kubernetes.io/master"
+      operator: Exists
+      effect: NoSchedule
+    - key: "node-role.kubernetes.io/control-plane"
+      operator: Exists
+      effect: NoSchedule
   config:
     core:
       sleepInterval: 3600s
