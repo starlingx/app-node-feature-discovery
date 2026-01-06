@@ -1,15 +1,15 @@
 #
-# Copyright (c) 2023-2024 Wind River Systems, Inc.
+# Copyright (c) 2023-2025 Wind River Systems, Inc.
 #
 # SPDX-License-Identifier: Apache-2.0
 #
 
-imagePullSecrets: [{"name": "default-registry-key"}]
+imagePullSecrets: ["name": "default-registry-key"]
 image:
   # cleans the default digest value since sysinv changes the digest when pushing the image to the local registry
   digest: ""
   repository: registry.k8s.io/nfd/node-feature-discovery
-  tag: v0.16.4
+  tag: v0.18.3
 
 namespaceOverride: "node-feature-discovery"
 
@@ -17,6 +17,7 @@ master:
   resources:
     requests:
       cpu: 0
+      memory: 0
   livenessProbe:
     timeoutSeconds: 5
   readinessProbe:
@@ -24,16 +25,19 @@ master:
 
 worker:
   tolerations:
-  - key: "node-role.kubernetes.io/master"
-    operator: Exists
-    effect: NoSchedule
-  - key: "node-role.kubernetes.io/control-plane"
-    operator: Exists
-    effect: NoSchedule
-  sleepInterval: 3600s
+    - key: "node-role.kubernetes.io/master"
+      operator: Exists
+      effect: NoSchedule
+    - key: "node-role.kubernetes.io/control-plane"
+      operator: Exists
+      effect: NoSchedule
+  config:
+    core:
+      sleepInterval: 3600s
   resources:
     requests:
       cpu: 0
+      memory: 0
   livenessProbe:
     timeoutSeconds: 5
   readinessProbe:
@@ -43,8 +47,10 @@ topologyUpdater:
   resources:
     requests:
       cpu: 0
+      memory: 0
 
 gc:
   resources:
     requests:
       cpu: 0
+      memory: 0
