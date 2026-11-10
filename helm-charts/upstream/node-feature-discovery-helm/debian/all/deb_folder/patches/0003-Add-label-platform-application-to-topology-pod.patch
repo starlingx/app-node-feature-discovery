@@ -14,17 +14,17 @@ Signed-off-by: Reynaldo P Gomes <reynaldo.patronegomes@windriver.com>
  1 file changed, 1 insertion(+)
 
 diff --git a/templates/topologyupdater.yaml b/templates/topologyupdater.yaml
-index 9a466f88e..02c330320 100644
+index 93f59df..c6aa611 100644
 --- a/templates/topologyupdater.yaml
 +++ b/templates/topologyupdater.yaml
-@@ -21,6 +21,7 @@ spec:
-     metadata:
-       labels:
-         {{- include "node-feature-discovery.selectorLabels" . | nindent 8 }}
+@@ -28,6 +28,7 @@ spec:
+         {{- with .Values.topologyUpdater.labels }}
+         {{- toYaml . | nindent 8 }}
+         {{- end }}
 +        app.starlingx.io/component: {{ ternary "application" "platform" (eq .Values.component "application") }}
          role: topology-updater
        annotations:
-         checksum/config: {{ include (print $.Template.BasePath "/nfd-topologyupdater-conf.yaml") . | sha256sum }}
+         {{- if .Values.checksumValuesOnly }}
 -- 
 2.43.0
 

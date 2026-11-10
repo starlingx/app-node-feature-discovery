@@ -14,17 +14,17 @@ Signed-off-by: Reynaldo P Gomes <reynaldo.patronegomes@windriver.com>
  1 file changed, 1 insertion(+)
 
 diff --git a/templates/worker.yaml b/templates/worker.yaml
-index 4aadd800b..43514ff25 100644
+index ee295fd..55cd2d7 100644
 --- a/templates/worker.yaml
 +++ b/templates/worker.yaml
-@@ -21,6 +21,7 @@ spec:
-     metadata:
-       labels:
-         {{- include "node-feature-discovery.selectorLabels" . | nindent 8 }}
+@@ -28,6 +28,7 @@ spec:
+         {{- with .Values.worker.labels }}
+         {{- toYaml . | nindent 8 }}
+         {{- end }}
 +        app.starlingx.io/component: {{ ternary "application" "platform" (eq .Values.component "application") }}
          role: worker
        annotations:
-         checksum/config: {{ include (print $.Template.BasePath "/nfd-worker-conf.yaml") . | sha256sum }}
+         {{- if .Values.checksumValuesOnly }}
 -- 
 2.43.0
 

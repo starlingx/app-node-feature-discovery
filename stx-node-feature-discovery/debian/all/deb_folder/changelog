@@ -1,3 +1,9 @@
+stx-node-feature-discovery (0.20-1) unstable; urgency=medium
+
+  * New upstream release 0.20-1
+
+ -- cchavesd <CaioRodrigo.ChavesdosSantos@windriver.com>  Mon, 23 Nov 2026 13:45:00 +0000
+
 stx-node-feature-discovery (1.4-0) unstable; urgency=medium
 
   * New upstream release.

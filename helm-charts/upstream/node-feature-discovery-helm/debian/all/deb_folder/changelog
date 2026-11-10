@@ -1,3 +1,9 @@
+node-feature-discovery-helm (0.20-1) unstable; urgency=medium
+
+  * New upstream release 0.20-1
+
+ -- cchavesd <CaioRodrigo.ChavesdosSantos@windriver.com>  Tue, 10 Nov 2026 19:04:45 +0000
+
 node-feature-discovery-helm (0.18-3) unstable; urgency=medium
 
   * New upstream release 0.18-3

@@ -14,13 +14,13 @@ Signed-off-by: Reynaldo P Gomes <reynaldo.patronegomes@windriver.com>
  1 file changed, 1 insertion(+)
 
 diff --git a/templates/nfd-gc.yaml b/templates/nfd-gc.yaml
-index 3642aa642..ee16ff7b6 100644
+index 2d12bb5..618d444 100644
 --- a/templates/nfd-gc.yaml
 +++ b/templates/nfd-gc.yaml
-@@ -22,6 +22,7 @@ spec:
-     metadata:
-       labels:
-         {{- include "node-feature-discovery.selectorLabels" . | nindent 8 }}
+@@ -25,6 +25,7 @@ spec:
+         {{- with .Values.gc.labels }}
+         {{- toYaml . | nindent 8 }}
+         {{- end }}
 +        app.starlingx.io/component: {{ ternary "application" "platform" (eq .Values.component "application") }}
          role: gc
        {{- with .Values.gc.annotations }}

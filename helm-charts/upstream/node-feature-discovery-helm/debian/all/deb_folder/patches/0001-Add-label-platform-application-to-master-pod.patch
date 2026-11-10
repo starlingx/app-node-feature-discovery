@@ -14,17 +14,17 @@ Signed-off-by: Reynaldo P Gomes <reynaldo.patronegomes@windriver.com>
  1 file changed, 1 insertion(+)
 
 diff --git a/templates/master.yaml b/templates/master.yaml
-index da3ca2408..9879a450b 100644
+index 8fa8e2f..da54d2b 100644
 --- a/templates/master.yaml
 +++ b/templates/master.yaml
-@@ -22,6 +22,7 @@ spec:
-     metadata:
-       labels:
-         {{- include "node-feature-discovery.selectorLabels" . | nindent 8 }}
+@@ -25,6 +25,7 @@ spec:
+         {{- with .Values.master.labels }}
+         {{- toYaml . | nindent 8 }}
+         {{- end }}
 +        app.starlingx.io/component: {{ ternary "application" "platform" (eq .Values.component "application") }}
          role: master
        annotations:
-         checksum/config: {{ include (print $.Template.BasePath "/nfd-master-conf.yaml") . | sha256sum }}
+         {{- if .Values.checksumValuesOnly }}
 -- 
 2.43.0
 

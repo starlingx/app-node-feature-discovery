@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2023-2025 Wind River Systems, Inc.
+# Copyright (c) 2023-2026 Wind River Systems, Inc.
 #
 # SPDX-License-Identifier: Apache-2.0
 #
@@ -9,7 +9,7 @@ image:
   # cleans the default digest value since sysinv changes the digest when pushing the image to the local registry
   digest: ""
   repository: registry.k8s.io/nfd/node-feature-discovery
-  tag: v0.18.3
+  tag: v0.20.1
 
 namespaceOverride: "node-feature-discovery"
 
@@ -34,6 +34,10 @@ worker:
   config:
     core:
       sleepInterval: 3600s
+  # Mount host path /usr/src inside the nfd-worker container so the kernel
+  # feature source can read the host kernel sources and stops logging the
+  # missing /usr/src warning.
+  mountUsrSrc: true
   resources:
     requests:
       cpu: 0

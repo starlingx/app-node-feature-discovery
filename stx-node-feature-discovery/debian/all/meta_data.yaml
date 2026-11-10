@@ -1,10 +1,10 @@
 ---
 debname: stx-node-feature-discovery
-debver: 1.4-0
+debver: 0.20-1
 src_path: stx-node-feature-discovery
 revision:
   stx_patch: 0
   dist: $STX_DIST
   GITREVCOUNT:
     SRC_DIR: ${MY_REPO}/stx/app-node-feature-discovery
-    BASE_SRCREV: b244d83defd437f6c5fcb5c0ae8cf017337cc155
+    BASE_SRCREV: c9307a34dade0e260585f21d742a4243374e133f
